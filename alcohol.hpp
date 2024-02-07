@@ -23,19 +23,19 @@ class Alcohol : public Product
     };
 
     Alcohol();
-    Alcohol(const std::string & pn,
-            const std::string & pc,
-            uint16_t st,
-            uint8_t pr,
-            float s,
-            volume v,
-            type t);
+    Alcohol(const std::string & pn = "Null",
+            const std::string & pc = "Null",
+            uint16_t st = 0,
+            uint8_t pr = 0,
+            float s = 0.0,
+            volume v = volume::ml,
+            type t = type::other);
   
     ~Alcohol();
 
-    void setSize();
-    void setVolume();
-    void setType();
+    void setSize(float s);
+    void setVolume(volume v);
+    void setType(type t);
     
     const float getSize() { return size; }
     const type getType() { return ty; }
