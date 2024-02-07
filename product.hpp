@@ -16,16 +16,16 @@ class Product
 
   public:
     Product() { }
-    Product(const std::string & pn = "Null",
-            const std::string & pc = "Null",
-            uint16_t s = 0,
-            uint8_t p = 0);
+    Product(const std::string & pn,
+            const std::string & pc,
+            uint16_t s,
+            uint8_t p);
     virtual ~Product() = 0;
 
-    void setName();
-    void setProductCode();
-    void setStock();
-    void setPrice();
+    void setName(std::string pn);
+    void setProductCode(std::string pc);
+    void setStock(uint16_t stock);
+    void setPrice(uint8_t price);
 
     const std::string & getName() { return productName; }
     const std::string & getCode() { return productCode; }
