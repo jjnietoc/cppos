@@ -41,6 +41,7 @@ class Alcohol : public Product
     const type getType() { return ty; }
     const volume getVolume() { return vol; }
 
+    friend std::ostream& operator<<(std::ostream& out, const std::vector<Alcohol>& a);
 
   private: 
     float size;

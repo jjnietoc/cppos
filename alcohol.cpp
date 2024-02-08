@@ -1,7 +1,7 @@
 // alcohol.cpp -- implementation of alcohol methods
 
 #include "alcohol.hpp"
-#include <ostream>
+#include <iostream>
 
 Alcohol::Alcohol(const std::string & pn,
             const std::string & pc,
