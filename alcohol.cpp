@@ -10,10 +10,7 @@ Alcohol::Alcohol(const std::string & pn,
             float s,
             volume v,
             type t) {
-  setName(pn);
-  setProductCode(pc);
-  setStock(st);
-  setPrice(pr);
+  Product(pn, pc, st, pr);
   setSize(s);
   setVolume(v);
   setType(t);
@@ -21,10 +18,29 @@ Alcohol::Alcohol(const std::string & pn,
 
 void Alcohol::setSize(float s) {
   if(size < 0.0)
-    std::cout << "size needs to be larger than 0.0";
+    std::cout << "size needs to be larger than 0.0" << std::endl;
   else 
     size = s;
 }
+
+void Alcohol::setVolume(volume v) {
+  if(v > 2)
+    std::cout << "Please select either ml or l";
+  else {
+    volume = v;
+  }
+}
+
+void Alcohol::setType(type t) {
+  if(type > 6)
+    std::cout << "Please select from the following:\n"
+      << "spirit\nbeer\nrtd\nred_wine\nwhite_wine\nother"
+      <<std::endl;
+  else {
+    type = t;
+  }
+}
+
 
 
 
