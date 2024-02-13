@@ -10,8 +10,8 @@ class Alcohol : public Product
   public:
     enum class volume {    // this or just input in ml and create
       // function to convert
-      ml,
-      l
+      ml = 0,
+      l = 1
     };
      enum class type {
       spirit,
@@ -22,7 +22,7 @@ class Alcohol : public Product
       other
     };
 
-    Alcohol();
+    Alcohol() { };
     Alcohol(const std::string & pn = "Null",
             const std::string & pc = "Null",
             uint16_t st = 0,
