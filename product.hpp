@@ -9,7 +9,7 @@
 
 class Product 
 {
-  private:
+  protected:
     std::string productName, productCode;
     uint16_t stock;
     uint8_t price;
@@ -19,13 +19,14 @@ class Product
     Product(const std::string & pn,
             const std::string & pc,
             uint16_t s,
-            uint8_t p);
-    virtual ~Product() = 0;
+            uint8_t p) 
+    { setName(pn); setProductCode(pc); setStock(s); setPrice(p); };
+    virtual ~Product() {};
 
-    void setName(std::string pn);
-    void setProductCode(std::string pc);
-    void setStock(uint16_t stock);
-    void setPrice(uint8_t price);
+    void setName(const std::string & pn) { productName = pn; }; 
+    void setProductCode(const std::string & pc) { productCode = pc; };
+    void setStock(uint16_t st) { stock = st; };
+    void setPrice(uint8_t pr) { price = pr; };
 
     const std::string & getName() { return productName; }
     const std::string & getCode() { return productCode; }

@@ -1,9 +1,7 @@
 // alcohol.cpp -- implementation of alcohol methods
 
-#include "alcohol.hpp"
 #include <iostream>
-
-// NOTE need to override virtual function methods
+#include "alcohol.hpp"
 
 Alcohol::Alcohol(const std::string & pn,
             const std::string & pc,
@@ -11,11 +9,7 @@ Alcohol::Alcohol(const std::string & pn,
             uint8_t pr,
             float s,
             volume v,
-            type t) {
-  setName(pn); 
-  setProductCode(pc);
-  setStock(st); 
-  setPrice(pr);
+            type t) : Product(pn, pc, st, pr) { 
   setSize(s);
   setVolume(v);
   setType(t);
@@ -48,11 +42,4 @@ void Alcohol::setType(type t) {
     ty = t;
   }
 }
-
-void setName(std::string pn) override {
-  productName = pn;
-}
-
-
-
 
