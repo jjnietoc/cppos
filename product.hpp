@@ -28,10 +28,10 @@ class Product
     void setStock(uint16_t st) { stock = st; };
     void setPrice(uint8_t pr) { price = pr; };
 
-    const std::string & getName() { return productName; }
-    const std::string & getCode() { return productCode; }
-    const uint16_t & getStock() { return stock; }
-    const uint8_t & getPrice() { return price; }
+    const std::string & getName() const { return productName; }
+    const std::string & getCode() const { return productCode; }
+    const uint16_t & getStock() const { return stock; }
+    const uint8_t & getPrice() const { return price; }
   };
 
 
