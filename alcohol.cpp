@@ -43,3 +43,15 @@ void Alcohol::setType(type t) {
   }
 }
 
+std::ostream& operator<<(std::ostream& out, const std::vector<Alcohol>& a) {
+  out << "List of products:\n";
+  size_t last = a.size() - 1;
+  for(size_t i = 0; i < a.size(); ++i) {
+    out << i + 1 << ") " << a[i].getName() << ". ID: "
+      << a[i].getCode() << ".";
+    if(i != last)
+      out << "\n";
+  }
+  out << "\n";
+  return out;
+}
