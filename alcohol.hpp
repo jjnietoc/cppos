@@ -25,8 +25,8 @@ class Alcohol : public Product
     Alcohol() { };
     Alcohol(const std::string & pn = "Null",
             const std::string & pc = "Null",
-            uint16_t st = 0,
-            uint8_t pr = 0,
+            uint32_t st = 0,
+            uint32_t pr = 0,
             float s = 0.0,
             volume v = volume::ml,
             type t = type::other);
@@ -37,9 +37,9 @@ class Alcohol : public Product
     void setVolume(volume v);
     void setType(type t);
     
-    const float getSize() { return size; }
-    const type getType() { return ty; }
-    const volume getVolume() { return vol; }
+    const float getSize() const { return size; }
+    const type getType() const { return ty; }
+    const volume getVolume() const { return vol; }
 
     friend std::ostream& operator<<(std::ostream& out, const std::vector<Alcohol>& a);
 
