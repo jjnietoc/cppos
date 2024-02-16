@@ -5,8 +5,8 @@
 
 Alcohol::Alcohol(const std::string & pn,
             const std::string & pc,
-            uint16_t st,
-            uint8_t pr,
+            uint32_t st,
+            uint32_t pr,
             float s,
             volume v,
             type t) : Product(pn, pc, st, pr) { 
@@ -48,7 +48,7 @@ std::ostream& operator<<(std::ostream& out, const std::vector<Alcohol>& a) {
   size_t last = a.size() - 1;
   for(size_t i = 0; i < a.size(); ++i) {
     out << i + 1 << ") " << a[i].getName() << ". ID: "
-      << a[i].getCode() << ".";
+      << a[i].getCode() << ".\n" << a[i].getSize();
     if(i != last)
       out << "\n";
   }
