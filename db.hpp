@@ -9,7 +9,8 @@ class SQL
     sqlite3 *db;
     char *errMsg = 0;
     int rc;
-    char *sql;
+    std::string sql;
+    //char *sql;
     const char* data = "Callback function called";
 
   public:
