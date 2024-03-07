@@ -10,7 +10,7 @@ SQL::~SQL() {
 }
 
 int SQL::openDB() {
-  rc = sqlite3_open("corp.hpp", &db);
+  rc = sqlite3_open("corp.db", &db);
   if(rc) {
     std::cout << "Can't open database:\n" << sqlite3_errmsg(db);
     return 0;
@@ -33,7 +33,7 @@ void SQL::createTable(std::string name) {
   
   sql = fullcmd;
 //  std::strncpy(sql, fullcmd.c_str(), sizeof(sql) - 1);
-  std::cout << sql;
+//  std::cout << sql;
 }
 
 void SQL::insertIntoTable(std::string name, 
