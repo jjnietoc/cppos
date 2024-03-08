@@ -50,18 +50,25 @@ void SQL::insertIntoTable(std::string tName,
                           float size) {
   
   upper(tName);
-  std::string tablecmd = 
+  std::string insertcmd = 
     "INSERT INTO " + tName + " (NAME,TYPE,VOLUME,PRICE,STOCK,SIZE) " \
-    "VALUES (" + name + ", " + type + ", " + volume + ", " + price + ", " + stock + ", " + size + ")";
+    "VALUES (" + name + ", " + type + ", " + volume + ", " + std::to_string(price) + ", " + std::to_string(stock) + ", " + std::to_string(size) + "); "; \
+  sql = insertcmd;
+}
+
+void SQL::updateTable(std::string tName, std::string column, std::string newval, std::string name) {
+  upper(tName);
+  std::string updatecmd =
+    "UPDATE " + tName + " set " + column + " = " + newval + "where NAME=" + name + "; "; \
+  sql = updatecmd;
+}
+
+void SQL::deleteFromTable(std::string tName, std::string name) {
+  upper(tName);
+  std::string deletecmd = 
+    "DELETE FROM " + tName + " WHERE NAME=" + name + ";"; \
+  sql = deletecmd;
   
-}
-
-void SQL::updateTable(std::string column, std::string newval) {
-
-}
-
-void SQL::deleteFromTable(std::string name) {
-
 }
 
 

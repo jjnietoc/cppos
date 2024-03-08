@@ -25,7 +25,10 @@ class SQL
                          int price,
                          int stock,
                          float size);
-    void updateTable(std::string column, std::string newval);
-    void deleteFromTable(std::string name);
-    std::string upper(std::string name);
+    void updateTable(std::string tName,
+                     std::string column, 
+                     std::string newval,
+                     std::string name);
+    void deleteFromTable(std::string tName, std::string name);
+    std::string upper(std::string name);    // for easier name transformations
   };
