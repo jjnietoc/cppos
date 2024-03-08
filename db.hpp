@@ -18,7 +18,8 @@ class SQL
     ~SQL();
     int openDB();
     void createTable(std::string name);
-    void insertIntoTable(std::string name, 
+    void insertIntoTable(std::string tName,
+                         std::string name, 
                          std::string type, 
                          std::string volume,
                          int price,
@@ -26,4 +27,5 @@ class SQL
                          float size);
     void updateTable(std::string column, std::string newval);
     void deleteFromTable(std::string name);
+    std::string upper(std::string name);
   };

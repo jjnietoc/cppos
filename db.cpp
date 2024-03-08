@@ -9,6 +9,11 @@ SQL::~SQL() {
 
 }
 
+std::string SQL::upper(std::string name) {
+  std::transform(name.begin(), name.end(), name.begin(), ::toupper);
+  return name;
+}
+
 int SQL::openDB() {
   rc = sqlite3_open("corp.db", &db);
   if(rc) {
@@ -21,8 +26,9 @@ int SQL::openDB() {
 }
 
 void SQL::createTable(std::string name) {
-  std::transform(name.begin(), name.end(), name.begin(), ::toupper);
-  std::string fullcmd = "CREATE TABLE " + name + "(" \
+  //std::transform(name.begin(), name.end(), name.begin(), ::toupper);
+  upper(name);
+  std::string fullcmd = "CREATE TABLE " + name + " (" \
   "ID INT PRIMARY KEY   AUTOINCREMENT," \
   "NAME           TEXT  NOT NULL," \
   "TYPE           TEXT  NOT NULL," \
@@ -32,17 +38,22 @@ void SQL::createTable(std::string name) {
   "SIZE           REAL  NOT NULL);";
   
   sql = fullcmd;
-//  std::strncpy(sql, fullcmd.c_str(), sizeof(sql) - 1);
 //  std::cout << sql;
 }
 
-void SQL::insertIntoTable(std::string name, 
+void SQL::insertIntoTable(std::string tName,
+                          std::string name, 
                           std::string type,
                           std::string volume,
                           int price,
                           int stock,
                           float size) {
-
+  
+  upper(tName);
+  std::string tablecmd = 
+    "INSERT INTO " + tName + " (NAME,TYPE,VOLUME,PRICE,STOCK,SIZE) " \
+    "VALUES (" + name + ", " + type + ", " + volume + ", " + price + ", " + stock + ", " + size + ")";
+  
 }
 
 void SQL::updateTable(std::string column, std::string newval) {
@@ -52,3 +63,5 @@ void SQL::updateTable(std::string column, std::string newval) {
 void SQL::deleteFromTable(std::string name) {
 
 }
+
+
