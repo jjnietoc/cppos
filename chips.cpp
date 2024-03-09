@@ -3,6 +3,7 @@
 #include "chips.hpp"
 
 #include <iostream>
+#include <vector>
 #include <map>
 
 Chips::Chips(const std::string & pn,
