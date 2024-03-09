@@ -59,9 +59,9 @@ void SQL::insertIntoTable(std::string tName,
   std::string insertcmd = 
     "INSERT INTO " + tName + " (NAME,TYPE,VOLUME,PRICE,STOCK,SIZE) " \
     "VALUES (" 
-    + name + ", " 
-    + type + ", " 
-    + volume + ", " 
+    + "'" + name + "'" + ", " 
+    + "'" + type + "'" + ", " 
+    + "'" + volume + "'" + ", " 
     + std::to_string(price) + ", " 
     + std::to_string(stock) + ", " 
     + std::to_string(size) + ");"; \
@@ -84,8 +84,8 @@ void SQL::updateTable(std::string tName,
     "UPDATE " 
     + tName + " set " 
     + column + " = " 
-    + newval + "where NAME=" 
-    + name + "; "; \
+    + "'" + newval + "'" 
+    + "where NAME=" + "'" + name + "'" + "; "; \
   sql = updatecmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
   if(rc != SQLITE_OK) {
