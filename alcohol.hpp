@@ -41,6 +41,7 @@ class Alcohol : public Product
     const type getType() const { return ty; }
     const volume getVolume() const { return vol; }
     const std::string getIdentifier() const { return "alcohol"; }
+
     const char* volToStr(Alcohol::volume v);
     const char* typeToStr(Alcohol::type t);
 
