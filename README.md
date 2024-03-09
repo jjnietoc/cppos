@@ -6,7 +6,7 @@ New project to practice everything I've learned of C++ so far.
 
 ### Goals:
 - [x] Add sqlite
-- [ ] Add sqlite for products
+- [x] Add sqlite for products
 - [ ] Create stock software
 - [ ] Create retail software
 - [ ] Create GUI
