@@ -31,4 +31,5 @@ class SQL
                      std::string name);
     void deleteFromTable(std::string tName, std::string name);
     std::string upper(std::string name);    // for easier name transformations
+    static int callback(void *data, int argc, char **argv, char **azColName);
   };
