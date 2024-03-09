@@ -23,6 +23,7 @@ class Chips : public Product
     void setSize(float s);
     
     const float getSize() const { return size; }
+    const std::string getIdentifier() const { return "chips"; }
 
     const char* massToStr(Chips::mass m); 
     
