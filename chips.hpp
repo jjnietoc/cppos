@@ -4,6 +4,7 @@
 #define CHIPS_HPP
 
 #include "product.hpp"
+#include <vector>
 
 class Chips : public Product
 {
