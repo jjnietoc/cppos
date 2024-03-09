@@ -1,7 +1,9 @@
 // chips.cpp -- compile with chips.hpp
 
 #include "chips.hpp"
+
 #include <iostream>
+#include <map>
 
 Chips::Chips(const std::string & pn,
              const std::string & pc,
@@ -30,4 +32,12 @@ std::ostream& operator<<(std::ostream& out, const std::vector<Chips>&ch) {
   }
   out << "\n";
   return out;
+}
+
+const char* Chips::massToStr(Chips::mass m) {
+  const std::map<Chips::mass, const char*> myEnumStrings {
+  { Chips::mass::grams, "grams" }
+  };
+  auto it = myEnumStrings.find(m);
+  return it == myEnumStrings.end() ? "Out of bounds" : it->second;
 }

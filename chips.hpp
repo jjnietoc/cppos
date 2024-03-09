@@ -10,7 +10,7 @@ class Chips : public Product
 {
   public:
     enum class mass {
-      grams = 0    
+      grams    
     };
     
     Chips() { };
@@ -24,6 +24,8 @@ class Chips : public Product
     void setSize(float s);
     
     const float getSize() const { return size; }
+
+    const char* massToStr(Chips::mass m); 
     
     friend std::ostream& operator<<(std::ostream& out, const std::vector<Chips>&ch);
 
