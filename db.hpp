@@ -30,6 +30,15 @@ class SQL
                      std::string newval,
                      std::string name);
     void deleteFromTable(std::string tName, std::string name);
-    std::string upper(std::string name);    // for easier name transformations
-    static int callback(void *data, int argc, char **argv, char **azColName);
+    void closeDataBase();
+    std::string upper(std::string name);    // for easier name transformations\
+
+    static int callback(void *data, int argc, char **argv, char **azColName) {
+      int i;
+      for(i = 0; i < argc; i++) {
+        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+      }
+      std::cout << "\n";
+      return 0;
+    };
   };

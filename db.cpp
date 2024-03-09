@@ -14,15 +14,6 @@ std::string SQL::upper(std::string name) {
   return name;
 }
 
-static int callback(void *data, int argc, char **argv, char **azColName) {
-  int i;
-  for(i = 0; i < argc; i++) {
-    printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-  }
-  std::cout << "\n";
-  return 0;
- }
-
 int SQL::openDB() {
   rc = sqlite3_open("corp.db", &db);
   if(rc) {
@@ -38,7 +29,7 @@ void SQL::createTable(std::string name) {
   //std::transform(name.begin(), name.end(), name.begin(), ::toupper);
   upper(name);
   std::string fullcmd = "CREATE TABLE " + name + " (" \
-  "ID INT PRIMARY KEY   AUTOINCREMENT," \
+  "ID INTEGER     PRIMARY KEY," \
   "NAME           TEXT  NOT NULL," \
   "TYPE           TEXT  NOT NULL," \
   "VOLUME         TEXT  NOT NULL," \
@@ -47,7 +38,13 @@ void SQL::createTable(std::string name) {
   "SIZE           REAL  NOT NULL);";
   
   sql = fullcmd;
-//  std::cout << sql;
+  rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+  if(rc != SQLITE_OK) {
+    std::cout << "SQL error:\n" << errMsg;
+    sqlite3_free(errMsg);
+  } else {
+    std::cout << "Operation done successfully\n";
+  }
 }
 
 void SQL::insertIntoTable(std::string tName,
@@ -67,12 +64,21 @@ void SQL::insertIntoTable(std::string tName,
     + volume + ", " 
     + std::to_string(price) + ", " 
     + std::to_string(stock) + ", " 
-    + std::to_string(size) + "); "; \
+    + std::to_string(size) + ");"; \
   sql = insertcmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+  if(rc != SQLITE_OK) {
+    std::cout << "SQL error:\n" << errMsg;
+    sqlite3_free(errMsg);
+  } else {
+    std::cout << "Operation done successfully\n";
+  }
 }
 
-void SQL::updateTable(std::string tName, std::string column, std::string newval, std::string name) {
+void SQL::updateTable(std::string tName, 
+                      std::string column, 
+                      std::string newval, 
+                      std::string name) {
   upper(tName);
   std::string updatecmd =
     "UPDATE " 
@@ -82,6 +88,12 @@ void SQL::updateTable(std::string tName, std::string column, std::string newval,
     + name + "; "; \
   sql = updatecmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+  if(rc != SQLITE_OK) {
+    std::cout << "SQL error:\n" << errMsg;
+    sqlite3_free(errMsg);
+  } else {
+    std::cout << "Operation done successfully\n";
+  }
 }
 
 void SQL::deleteFromTable(std::string tName, std::string name) {
@@ -90,6 +102,16 @@ void SQL::deleteFromTable(std::string tName, std::string name) {
     "DELETE FROM " + tName + " WHERE NAME=" + name + ";"; \
   sql = deletecmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+  if(rc != SQLITE_OK) {
+    std::cout << "SQL error:\n" << errMsg;
+    sqlite3_free(errMsg);
+  } else {
+    std::cout << "Operation done successfully\n";
+  }
+}
+
+void SQL::closeDataBase() {
+  sqlite3_close(db);
 }
 
 
