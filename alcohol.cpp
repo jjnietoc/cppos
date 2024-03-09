@@ -1,6 +1,9 @@
 // alcohol.cpp -- implementation of alcohol methods
 
 #include <iostream>
+#include <vector>
+#include <map>
+
 #include "alcohol.hpp"
 
 Alcohol::Alcohol(const std::string & pn,
@@ -25,22 +28,11 @@ void Alcohol::setSize(float s) {
 }
 
 void Alcohol::setVolume(volume v) {
-  if(v != Alcohol::volume::l || v != Alcohol::volume::ml)
-    std::cout << "Please select either ml or l";
-  else {
     vol = v;
-  }
 }
 
 void Alcohol::setType(type t) {
-  if(t != Alcohol::type::spirit || t != Alcohol::type::beer || t != Alcohol::type::rtd || t != Alcohol::type::red_wine || 
-    t != Alcohol::type::white_wine || t != Alcohol::type::other) {
-    std::cout << "Please select from the following:\n"
-      << "spirit\nbeer\nrtd\nred_wine\nwhite_wine\nother"
-      <<std::endl;
-  } else {
     ty = t;
-  }
 }
 
 std::ostream& operator<<(std::ostream& out, const std::vector<Alcohol>& a) {
@@ -54,4 +46,26 @@ std::ostream& operator<<(std::ostream& out, const std::vector<Alcohol>& a) {
   }
   out << "\n";
   return out;
+}
+
+const char* Alcohol::volToStr(Alcohol::volume v) {
+  const std::map<Alcohol::volume, const char*> myEnumStrings {
+  { Alcohol::volume::l, "liter" },
+  { Alcohol::volume::ml, "mililiter" }  
+  };
+  auto it = myEnumStrings.find(v);
+  return it == myEnumStrings.end() ? "Out of range" : it-> second;
+}
+
+const char* Alcohol::typeToStr(Alcohol::type t) {
+  const std::map<Alcohol::type, const char*> myEnumStrings {
+  { Alcohol::type::spirit, "spirit" },
+  { Alcohol::type::beer, "beer" },
+  { Alcohol::type::rtd, "rtd" },
+  { Alcohol::type::red_wine, "red wine" },
+  { Alcohol::type::white_wine, "white wine" },
+  { Alcohol::type::other, "other" }
+  };
+  auto it = myEnumStrings.find(t);
+  return it == myEnumStrings.end() ? "Out of range" : it->second;
 }

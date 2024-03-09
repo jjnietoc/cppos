@@ -40,6 +40,9 @@ class Alcohol : public Product
     const float getSize() const { return size; }
     const type getType() const { return ty; }
     const volume getVolume() const { return vol; }
+    const std::string getIdentifier() const { return "alcohol"; }
+    const char* volToStr(Alcohol::volume v);
+    const char* typeToStr(Alcohol::type t);
 
     friend std::ostream& operator<<(std::ostream& out, const std::vector<Alcohol>& a);
 
