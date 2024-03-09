@@ -27,5 +27,5 @@ I will now proceed to link a database so the program can store memory after been
 - Create products and store them while the program is running
 
 ### Next:
-- Start with database.
+- Modify sqlite for product objects.
 
