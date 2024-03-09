@@ -14,6 +14,15 @@ std::string SQL::upper(std::string name) {
   return name;
 }
 
+static int callback(void *data, int argc, char **argv, char **azColName) {
+  int i;
+  for(i = 0; i < argc; i++) {
+    printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+  }
+  std::cout << "\n";
+  return 0;
+ }
+
 int SQL::openDB() {
   rc = sqlite3_open("corp.db", &db);
   if(rc) {
@@ -52,15 +61,27 @@ void SQL::insertIntoTable(std::string tName,
   upper(tName);
   std::string insertcmd = 
     "INSERT INTO " + tName + " (NAME,TYPE,VOLUME,PRICE,STOCK,SIZE) " \
-    "VALUES (" + name + ", " + type + ", " + volume + ", " + std::to_string(price) + ", " + std::to_string(stock) + ", " + std::to_string(size) + "); "; \
+    "VALUES (" 
+    + name + ", " 
+    + type + ", " 
+    + volume + ", " 
+    + std::to_string(price) + ", " 
+    + std::to_string(stock) + ", " 
+    + std::to_string(size) + "); "; \
   sql = insertcmd;
+  rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
 }
 
 void SQL::updateTable(std::string tName, std::string column, std::string newval, std::string name) {
   upper(tName);
   std::string updatecmd =
-    "UPDATE " + tName + " set " + column + " = " + newval + "where NAME=" + name + "; "; \
+    "UPDATE " 
+    + tName + " set " 
+    + column + " = " 
+    + newval + "where NAME=" 
+    + name + "; "; \
   sql = updatecmd;
+  rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
 }
 
 void SQL::deleteFromTable(std::string tName, std::string name) {
@@ -68,7 +89,8 @@ void SQL::deleteFromTable(std::string tName, std::string name) {
   std::string deletecmd = 
     "DELETE FROM " + tName + " WHERE NAME=" + name + ";"; \
   sql = deletecmd;
-  
+  rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
 }
+
 
 
