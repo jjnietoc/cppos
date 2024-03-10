@@ -12,26 +12,26 @@ class Product
   protected:
     std::string productName, productCode;
     uint16_t stock;
-    uint8_t price;
+    float price;
 
   public:
     Product() { }
     Product(const std::string & pn,
             const std::string & pc,
             uint16_t s,
-            uint8_t p) 
+            float p) 
     { setName(pn); setProductCode(pc); setStock(s); setPrice(p); };
     virtual ~Product() {};
 
     void setName(const std::string & pn) { productName = pn; }; 
     void setProductCode(const std::string & pc) { productCode = pc; };
     void setStock(uint16_t st) { stock = st; };
-    void setPrice(uint8_t pr) { price = pr; };
+    void setPrice(float pr) { price = pr; };
 
     const std::string & getName() const { return productName; }
     const std::string & getCode() const { return productCode; }
     const uint16_t & getStock() const { return stock; }
-    const uint8_t & getPrice() const { return price; }
+    const float & getPrice() const { return price; }
   };
 
 
