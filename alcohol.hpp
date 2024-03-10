@@ -26,7 +26,7 @@ class Alcohol : public Product
     Alcohol(const std::string & pn = "Null",
             const std::string & pc = "Null",
             uint32_t st = 0,
-            uint32_t pr = 0,
+            float pr = 0,
             float s = 0.0,
             volume v = volume::ml,
             type t = type::other);

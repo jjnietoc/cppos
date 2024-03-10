@@ -9,7 +9,7 @@
 Alcohol::Alcohol(const std::string & pn,
             const std::string & pc,
             uint32_t st,
-            uint32_t pr,
+            float pr,
             float s,
             volume v,
             type t) : Product(pn, pc, st, pr) { 
