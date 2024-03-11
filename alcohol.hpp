@@ -24,7 +24,6 @@ class Alcohol : public Product
 
     Alcohol() { };
     Alcohol(const std::string & pn = "Null",
-            const std::string & pc = "Null",
             uint32_t st = 0,
             float pr = 0,
             float s = 0.0,
@@ -36,6 +35,7 @@ class Alcohol : public Product
     void setSize(float s);
     void setVolume(volume v);
     void setType(type t);
+    void setProductCode() override;
     
     const float getSize() const { return size; }
     const type getType() const { return ty; }

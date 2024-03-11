@@ -7,18 +7,22 @@
 #include "alcohol.hpp"
 
 Alcohol::Alcohol(const std::string & pn,
-            const std::string & pc,
             uint32_t st,
             float pr,
             float s,
             volume v,
-            type t) : Product(pn, pc, st, pr) { 
+            type t) : Product(pn, st, pr) { 
   setSize(s);
   setVolume(v);
   setType(t);
 }
 
 Alcohol::~Alcohol() {}
+
+void Alcohol::setProductCode() {
+  int temp = rand() % 90000 + 10000;
+  productCode = std::to_string(temp);
+}
 
 void Alcohol::setSize(float s) {
   if(size < 0.0)
