@@ -17,14 +17,13 @@ class Product
   public:
     Product() { }
     Product(const std::string & pn,
-            const std::string & pc,
             uint16_t s,
             float p) 
-    { setName(pn); setProductCode(pc); setStock(s); setPrice(p); };
+    { setName(pn); setProductCode(); setStock(s); setPrice(p); };
     virtual ~Product() {};
 
     void setName(const std::string & pn) { productName = pn; }; 
-    void setProductCode(const std::string & pc) { productCode = pc; };
+    virtual void setProductCode() { productCode = "NULL"; };
     void setStock(uint16_t st) { stock = st; };
     void setPrice(float pr) { price = pr; };
 
