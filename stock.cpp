@@ -24,7 +24,6 @@ int main(void) {
   alcoholType = static_cast<Alcohol::type>(tempType);
 
   Alcohol alc(alcoholName, 
-              alcoholCode, 
               alcoholStock,
               alcoholPrice,
               alcoholSize,
@@ -34,11 +33,12 @@ int main(void) {
   // TODO input for chips
 
   Chips chip(chipsName,
-             chipsCode,
              chipsStock,
              chipsPrice,
              chipsSize);
 
+  // TODO create 2 tables, one for alcohol and one for chips, or better yet
+  // think of structure for different tables in db
   SQL database;
   
   std::string tableName;
