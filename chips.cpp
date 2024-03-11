@@ -7,13 +7,18 @@
 #include <map>
 
 Chips::Chips(const std::string & pn,
-             const std::string & pc,
              uint32_t st,
-             uint32_t pr,
-             float s) : Product(pn, pc, st, pr) {
+             float pr,
+             float s) : Product(pn, st, pr) {
   setSize(s);
+  setProductCode();
   m = mass::grams;
 }
+
+void Chips::setProductCode() {
+  int temp = rand() % 90000 + 10000;
+  productCode = std::to_string(temp);
+};
 
 void Chips::setSize(float s) {
   if(size < 0.0)
