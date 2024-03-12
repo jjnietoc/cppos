@@ -10,8 +10,8 @@ class Alcohol : public Product
   public:
     enum class volume {    // this or just input in ml and create
       // function to convert
-      ml = 0,
-      l = 1
+      ml = 1,
+      l = 2
     };
      enum class type {
       spirit,
