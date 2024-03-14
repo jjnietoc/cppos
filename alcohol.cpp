@@ -13,6 +13,7 @@ Alcohol::Alcohol(const std::string & pn,
             volume v,
             type t) : Product(pn, st, pr) { 
   setSize(s);
+  setProductCode();
   setVolume(v);
   setType(t);
 }
@@ -44,7 +45,7 @@ std::ostream& operator<<(std::ostream& out, const std::vector<Alcohol>& a) {
   size_t last = a.size() - 1;
   for(size_t i = 0; i < a.size(); ++i) {
     out << i + 1 << ") " << a[i].getName() << ". ID: "
-      << a[i].getCode() << ".\n" << a[i].getSize();
+      << a[i].getCode();
     if(i != last)
       out << "\n";
   }
