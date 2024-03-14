@@ -64,7 +64,7 @@ int main(void) {
           "Press (1) for 'yes' and (2) for 'no': ";
         std::cin.clear();
       } else {
-        break;    // NOTE does this work????
+        break;     
       }
     }
   }
@@ -107,10 +107,16 @@ int main(void) {
       }
     }
   
-
-  std::cout << "Would you like to add the following products to the database?:\nAlcohols:\n";
-  std::cout << alcohols;
-  std::cout << "Chips:\n";
-  std::cout << chips;
-
+if(alcohols.empty()) {
+    std::cout << "Bye!" << std::endl;
+  } else {
+    std::cout << "Would you like to add the following products to the database?:\nAlcohols:\n";
+    std::cout << alcohols;
+  }
+if(chips.empty()) {
+    std::cout << "Bye!" << std::endl;
+  } else {
+    std::cout << "Chips:\n";
+    std::cout << chips;
+  }
 }
