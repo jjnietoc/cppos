@@ -15,6 +15,10 @@ Chips::Chips(const std::string & pn,
   m = mass::grams;
 }
 
+Chips::~Chips() {
+
+}
+
 void Chips::setProductCode() {
   int temp = rand() % 90000 + 10000;
   productCode = std::to_string(temp);
