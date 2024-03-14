@@ -10,29 +10,32 @@ void alcInput(Alcohol &alc);
 int main(void) {
   // TODO create 2 tables, one for alcohol and one for chips, or better yet
   // think of structure for different tables in db
-  SQL database;
+  //SQL database;
   
-  std::string tableName;
+  //std::string tableName;
 
-  database.createTable(tableName);
+  //database.createTable(tableName);
 
   std::vector<Alcohol> alcohols;
   std::vector<Chips> chips;
 
-  std::cout << "cpPOS v.0.0\nWould you like to add alcohol?\n" <<
+  std::cout << "cpPOS v.0.0\nWould you like to add any alcohol?\n" <<
     "Press (1) for 'yes' and (2) for 'no': " << std::endl;
   int ans;
   std::cin >> ans;
-  if(ans == 1) {
+  if(ans == 2) {
+    std::cout << "Thank you! Bye!\n" << std::endl;
+  } else {
     std::string alcoholName;
     Alcohol::volume alcoholVol;
     Alcohol::type alcoholType;
     int tempVol, tempType;
     uint32_t alcoholStock;
     float alcoholPrice, alcoholSize;
-    while(std::cin >> ans) {  // FIX is there a way to provide cin with an answer (1)
+    while(std::cin >> ans) {  
       if(ans == 1) {
-        std::cout << "Alchol\nName: " << std::endl;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Alcohol\nName: " << std::endl;
         std::getline(std::cin, alcoholName);
         std::cout << "Volume (1) ml, (2) litre: " << std::endl;          
         std::cin >> tempVol;
@@ -64,6 +67,7 @@ int main(void) {
         break;    // NOTE does this work????
       }
     }
+  }
     std::cout << "Thank you.\n\n" << 
       "Would you like to add any chips?\n" << 
       "Press (1) for 'yes' and (2) for 'no': " << std::endl;
@@ -77,6 +81,7 @@ int main(void) {
       float chipsPrice, chipsSize;
       while(std::cin >> ans2) {
         if(ans2 == 1) {
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           std::cout << "Chips\nName: " << std::endl;
           std::getline(std::cin, chipsName);
           std::cout << "Stock: " << std::endl;
@@ -101,14 +106,11 @@ int main(void) {
         }
       }
     }
-  }
+  
 
-
-  // for chips
-
-  // TODO input for chips
-
-
-
+  std::cout << "Would you like to add the following products to the database?:\nAlcohols:\n";
+  std::cout << alcohols;
+  std::cout << "Chips:\n";
+  std::cout << chips;
 
 }
