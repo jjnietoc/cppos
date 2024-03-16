@@ -25,7 +25,7 @@ int SQL::openDB() {
   }
 }
 
-void SQL::createTable(std::string name) {
+void SQL::createAlcoholTable(std::string name) {
   //std::transform(name.begin(), name.end(), name.begin(), ::toupper);
   upper(name);
   std::string fullcmd = "CREATE TABLE " + name + " (" \
@@ -71,7 +71,7 @@ void SQL::insertIntoAlcohol(std::string tName,
     std::cout << "SQL error:\n" << errMsg;
     sqlite3_free(errMsg);
   } else {
-    std::cout << "Operation done successfully\n";
+    std::cout << "Insert into alcohol done successfully\n";
   }
 }
 
@@ -95,7 +95,7 @@ void SQL::insertIntoChips(std::string tName,
     std::cout << "SQL error:\n" << errMsg << "\n";
     sqlite3_free(errMsg);
   } else {
-    std::cout << "Operation done successfully\n";
+    std::cout << "Insert into chips done successfully\n";
   }
 }
 
@@ -117,7 +117,7 @@ void SQL::updateTable(std::string tName,
     std::cout << "SQL error:\n" << errMsg;
     sqlite3_free(errMsg);
   } else {
-    std::cout << "Operation done successfully\n";
+    std::cout << "Update done successfully\n";
   }
 }
 
