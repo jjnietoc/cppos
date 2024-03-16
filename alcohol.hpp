@@ -14,12 +14,12 @@ class Alcohol : public Product
       l = 2
     };
      enum class type {
-      spirit,
-      beer,
-      rtd,
-      red_wine,
-      white_wine,
-      other
+      spirit = 1,
+      beer = 2,
+      rtd = 3,
+      red_wine = 4,
+      white_wine = 5,
+      other = 6
     };
 
     Alcohol() { };
