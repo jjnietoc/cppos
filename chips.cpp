@@ -7,7 +7,7 @@
 #include <map>
 
 Chips::Chips(const std::string & pn,
-             uint32_t st,
+             int st,
              float pr,
              float s) : Product(pn, st, pr) {
   setSize(s);

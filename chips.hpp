@@ -14,7 +14,7 @@ class Chips : public Product
     
     Chips() { };
     Chips(const std::string & pn = "Null",
-          uint32_t st = 0,
+          int st = 0,
           float pr = 0,
           float s = 0.0);
     ~Chips();
