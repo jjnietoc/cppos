@@ -10,11 +10,13 @@ void alcInput(Alcohol &alc);
 int main(void) {
   // TODO create 2 tables, one for alcohol and one for chips, or better yet
   // think of structure for different tables in db
-  //SQL database;
-  
-  //std::string tableName;
+  SQL database;
 
-  //database.createTable(tableName);
+  database.openDB();
+  
+  std::string tableName = "Alcohols";
+
+  database.createTable(tableName);
 
   std::vector<Alcohol> alcohols;
   std::vector<Chips> chips;
@@ -119,4 +121,16 @@ if(chips.empty()) {
     std::cout << "Chips:\n";
     std::cout << chips;
   }
+
+  for(int i = 0; i < alcohols.size(); i++) {
+    database.insertIntoTable("Alcohols", 
+                             alcohols[i].getName(), 
+                             alcohols[i].typeToStr(alcohols[i].getType()), 
+                             alcohols[i].typeToStr(alcohols[i].getType()), 
+                             alcohols[i].getPrice(), 
+                             alcohols[i].getStock(), 
+                             alcohols[i].getSize());
+  }
+  
+
 }
