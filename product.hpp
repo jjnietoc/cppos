@@ -17,7 +17,7 @@ class Product
   public:
     Product() { }
     Product(const std::string & pn,
-            uint16_t s,
+            int s,
             float p) 
     { setName(pn); setProductCode(); setStock(s); setPrice(p); };
     virtual ~Product() {};
