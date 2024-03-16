@@ -8,15 +8,19 @@
 void alcInput(Alcohol &alc);
 
 int main(void) {
-  // TODO create 2 tables, one for alcohol and one for chips, or better yet
-  // think of structure for different tables in db
+  // FIX THERE SHOULD BE A WAY TO CREATE A SINGLE FUNCTION THAT CAN
+  // CHANGE DEPENDING ON WHAT IT RECEIVES
   SQL database;
 
   database.openDB();
   
-  std::string tableName = "Alcohols";
+  std::string alcTableName = "Alcohols";
+  std::string chiTableName = "Chips";
 
-  database.createTable(tableName);
+  // FIX I could create two different createTable functions BUT
+  // THERE SHOULD BE A BETTER WAY
+  database.createTable(alcTableName);
+  database.createTable(chiTableName);
 
   std::vector<Alcohol> alcohols;
   std::vector<Chips> chips;
@@ -123,14 +127,21 @@ if(chips.empty()) {
   }
 
   for(int i = 0; i < alcohols.size(); i++) {
-    database.insertIntoTable("Alcohols", 
-                             alcohols[i].getName(), 
-                             alcohols[i].typeToStr(alcohols[i].getType()), 
-                             alcohols[i].typeToStr(alcohols[i].getType()), 
-                             alcohols[i].getPrice(), 
-                             alcohols[i].getStock(), 
-                             alcohols[i].getSize());
+    database.insertIntoAlcohol("Alcohols", 
+                               alcohols[i].getName(), 
+                               alcohols[i].typeToStr(alcohols[i].getType()), 
+                               alcohols[i].typeToStr(alcohols[i].getType()), 
+                               alcohols[i].getStock(), 
+                               alcohols[i].getPrice(), 
+                               alcohols[i].getSize());
   }
   
+  for(int i = 0; i < chips.size(); i++) {
+    database.insertIntoChips("Chips", 
+                             chips[i].getName(), 
+                             chips[i].getStock(), 
+                             chips[i].getPrice(), 
+                             chips[i].getSize());
+  }
 
 }
