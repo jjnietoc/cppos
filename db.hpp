@@ -18,12 +18,17 @@ class SQL
     ~SQL();
     int openDB();
     void createTable(std::string name);
-    void insertIntoTable(std::string tName,
-                         std::string name, 
-                         std::string type, 
-                         std::string volume,
-                         int price,
+    void insertIntoAlcohol(std::string tName,
+                           std::string name, 
+                           std::string type, 
+                           std::string volume,
+                           int stock,
+                           float price,
+                           float size);
+    void insertIntoChips(std::string tName,
+                         std::string name,
                          int stock,
+                         float price,
                          float size);
     void updateTable(std::string tName,
                      std::string column, 

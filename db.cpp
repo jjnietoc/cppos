@@ -40,19 +40,19 @@ void SQL::createTable(std::string name) {
   sql = fullcmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
   if(rc != SQLITE_OK) {
-    std::cout << "SQL error:\n" << errMsg;
+    std::cout << "SQL error:\n" << errMsg << "\n";
     sqlite3_free(errMsg);
   } else {
     std::cout << "Operation done successfully\n";
   }
 }
 
-void SQL::insertIntoTable(std::string tName,
+void SQL::insertIntoAlcohol(std::string tName,
                           std::string name, 
                           std::string type,
                           std::string volume,
-                          int price,
                           int stock,
+                          float price,
                           float size) {
   
   upper(tName);
@@ -75,6 +75,31 @@ void SQL::insertIntoTable(std::string tName,
   }
 }
 
+void SQL::insertIntoChips(std::string tName,
+                          std::string name, 
+                          int stock,
+                          float price,
+                          float size) {
+  
+  upper(tName);
+  std::string insertcmd = 
+    "INSERT INTO " + tName + " (NAME,TYPE,STOCK,PRICE,SIZE) " \
+    "VALUES (" 
+    + "'" + name + "'" + ", " 
+    + std::to_string(stock) + ", " 
+    + std::to_string(price) + ", " 
+    + std::to_string(size) + ");"; \
+  sql = insertcmd;
+  rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+  if(rc != SQLITE_OK) {
+    std::cout << "SQL error:\n" << errMsg << "\n";
+    sqlite3_free(errMsg);
+  } else {
+    std::cout << "Operation done successfully\n";
+  }
+}
+
+
 void SQL::updateTable(std::string tName, 
                       std::string column, 
                       std::string newval, 
@@ -85,7 +110,7 @@ void SQL::updateTable(std::string tName,
     + tName + " set " 
     + column + " = " 
     + "'" + newval + "'" 
-    + "where NAME=" + "'" + name + "'" + "; "; \
+    + "where NAME=" + "'" + name +  + "; "; \
   sql = updatecmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
   if(rc != SQLITE_OK) {
