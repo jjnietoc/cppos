@@ -127,7 +127,7 @@ if(chips.empty()) {
   }
 
   for(int i = 0; i < alcohols.size(); i++) {
-    database.insertIntoAlcohol("Alcohols", 
+    database.insertIntoTable("Alcohols", 
                                alcohols[i].getName(), 
                                alcohols[i].typeToStr(alcohols[i].getType()), 
                                alcohols[i].typeToStr(alcohols[i].getType()), 
@@ -137,7 +137,7 @@ if(chips.empty()) {
   }
   
   for(int i = 0; i < chips.size(); i++) {
-    database.insertIntoChips("Chips", 
+    database.insertIntoTable("Chips", 
                              chips[i].getName(), 
                              chips[i].getStock(), 
                              chips[i].getPrice(), 
