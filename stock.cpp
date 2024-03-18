@@ -19,8 +19,8 @@ int main(void) {
 
   // FIX I could create two different createTable functions BUT
   // THERE SHOULD BE A BETTER WAY
-  database.createTable(alcTableName);
-  database.createTable(chiTableName);
+  database.createTable(alcTableName, 1);
+  database.createTable(chiTableName, 2);
 
   std::vector<Alcohol> alcohols;
   std::vector<Chips> chips;
