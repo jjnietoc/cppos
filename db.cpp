@@ -1,5 +1,6 @@
 #include "db.hpp"
 #include <algorithm>
+#include <map>
 
 SQL::SQL() {
 
@@ -25,8 +26,7 @@ int SQL::openDB() {
   }
 }
 
-void SQL::createAlcoholTable(std::string name) {
-  //std::transform(name.begin(), name.end(), name.begin(), ::toupper);
+void SQL::createTable(std::string name) {
   upper(name);
   std::string fullcmd = "CREATE TABLE " + name + " (" \
   "ID INTEGER     PRIMARY KEY," \
@@ -47,7 +47,64 @@ void SQL::createAlcoholTable(std::string name) {
   }
 }
 
-void SQL::insertIntoAlcohol(std::string tName,
+void SQL::createTable(std::string tName, int type) {
+  switch(type) {
+    case 1: {
+      upper(tName);
+      std::string fullcmd = "CREATE TABLE " + tName + " (" \
+      "ID INTEGER     PRIMARY KEY," \
+      "NAME           TEXT  NOT NULL," \
+      "TYPE           TEXT  NOT NULL," \
+      "VOLUME         TEXT  NOT NULL," \
+      "PRICE          INT   NOT NULL," \
+      "STOCK          INT   NOT NULL," \
+      "SIZE           REAL  NOT NULL);";
+  
+      sql = fullcmd;
+      rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+      if(rc != SQLITE_OK) {
+        std::cout << "SQL error:\n" << errMsg << "\n";
+        sqlite3_free(errMsg);
+      } else {
+        std::cout << "Operation done successfully\n";
+      }
+      break;
+    }
+    case 2: {
+      upper(tName);
+      std::string fullcmd2 = "CREATE TABLE " + tName + " (" \
+      "ID INTEGER     PRIMARY KEY," \
+      "NAME           TEXT  NOT NULL," \
+      "STOCK          INT  NOT NULL," \
+      "PRICE          INT   NOT NULL," \
+      "SIZE           REAL  NOT NULL);";
+  
+      sql = fullcmd2;
+      rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+      if(rc != SQLITE_OK) {
+       std::cout << "SQL error:\n" << errMsg << "\n";
+        sqlite3_free(errMsg);
+      } else {
+        std::cout << "Operation done successfully\n";
+      }
+      break;
+    }
+  }
+}
+
+/* Don't think this is still useful
+const char* SQL::typeToSQL(std::type_index ti) {
+  const std::map<std::type_index, const char*> myTypeMap {
+    { std::type_index(typeid(std::string)), "TEXT" },
+    { std::type_index(typeid(int)), "INT" },
+    { std::type_index(typeid(float)), "REAL" }
+  };
+  auto it = myTypeMap.find(ti);
+  return it == myTypeMap.end() ? "Out of range" : it->second;
+} */
+
+// FIX MAKE INSERT METHOD LIKE CREATE TABLE
+void SQL::insertIntoTable(std::string tName,
                           std::string name, 
                           std::string type,
                           std::string volume,
@@ -75,7 +132,7 @@ void SQL::insertIntoAlcohol(std::string tName,
   }
 }
 
-void SQL::insertIntoChips(std::string tName,
+void SQL::insertIntoTable(std::string tName,
                           std::string name, 
                           int stock,
                           float price,

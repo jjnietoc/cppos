@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string>
 #include <iostream>
+#include <typeindex>
 
 class SQL
 {
@@ -17,15 +18,16 @@ class SQL
     SQL();
     ~SQL();
     int openDB();
-    void createTable(std::string name);
-    void insertIntoAlcohol(std::string tName,
+    void createTable(std::string tName);
+    void createTable(std::string tName, int type);
+    void insertIntoTable(std::string tName,
                            std::string name, 
                            std::string type, 
                            std::string volume,
                            int stock,
                            float price,
                            float size);
-    void insertIntoChips(std::string tName,
+    void insertIntoTable(std::string tName,
                          std::string name,
                          int stock,
                          float price,
@@ -36,7 +38,9 @@ class SQL
                      std::string name);
     void deleteFromTable(std::string tName, std::string name);
     void closeDataBase();
-    std::string upper(std::string name);    // for easier name transformations\
+
+    std::string upper(std::string name);    // for easier name transformations
+    const char* typeToSQL(std::type_index ti);
 
     static int callback(void *data, int argc, char **argv, char **azColName) {
       int i;
