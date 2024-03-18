@@ -7,7 +7,7 @@
 #include "alcohol.hpp"
 
 Alcohol::Alcohol(const std::string & pn,
-            uint32_t st,
+            int st,
             float pr,
             float s,
             volume v,
