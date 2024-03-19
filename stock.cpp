@@ -8,72 +8,74 @@
 void alcInput(Alcohol &alc);
 
 int main(void) {
-  // FIX THERE SHOULD BE A WAY TO CREATE A SINGLE FUNCTION THAT CAN
-  // CHANGE DEPENDING ON WHAT IT RECEIVES
   SQL database;
 
   database.openDB();
   
   std::string alcTableName = "Alcohols";
   std::string chiTableName = "Chips";
-
-  // FIX I could create two different createTable functions BUT
-  // THERE SHOULD BE A BETTER WAY
+  
   database.createTable(alcTableName, 1);
   database.createTable(chiTableName, 2);
 
   std::vector<Alcohol> alcohols;
   std::vector<Chips> chips;
 
-  std::cout << "cpPOS v.0.0\nWould you like to add any alcohol?\n" <<
-    "Press (1) for 'yes' and (2) for 'no': " << std::endl;
-  int ans;
-  std::cin >> ans;
-  if(ans == 2) {
-    std::cout << "Thank you! Bye!\n" << std::endl;
-  } else {
-    std::string alcoholName;
-    Alcohol::volume alcoholVol;
-    Alcohol::type alcoholType;
-    int tempVol, tempType;
-    uint32_t alcoholStock;
-    float alcoholPrice, alcoholSize;
-    while(std::cin >> ans) {  
-      if(ans == 1) {
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Alcohol\nName: " << std::endl;
-        std::getline(std::cin, alcoholName);
-        std::cout << "Volume (1) ml, (2) litre: " << std::endl;          
-        std::cin >> tempVol;
-        std::cout << "Type (1) spirit, (2) beer, (3) rtd, (4) r wine, (5) w wine, (6) other: " << std::endl;
-        std::cin >> tempType;
-        std::cout << "Stock: " << std::endl;
-        std::cin >> alcoholStock;
-        std::cout << "Price: " << std::endl;
-        std::cin >> alcoholPrice;
-        std::cout << "Size: " << std::endl;
-        std::cin >> alcoholSize;
-
-        alcoholVol = static_cast<Alcohol::volume>(tempVol);
-        alcoholType = static_cast<Alcohol::type>(tempType);
-
-        Alcohol alc(alcoholName, 
-                    alcoholStock,
-                    alcoholPrice,
-                    alcoholSize,
-                    alcoholVol,
-                    alcoholType);
-
-        alcohols.push_back(alc);
-
-        std::cout << "Would you like to add another?\n" <<
-          "Press (1) for 'yes' and (2) for 'no': ";
-        std::cin.clear();
+  std::cout << "\n\ncpPOS v.0.1\nSelect from following (press number):\n" <<
+    "(1) ADD products.\n(2) MODIFY products\n(3) DELETE products" << std::endl;
+  int response;
+  std::cin >> response;
+  switch(response) {
+    case 1: {
+      std::cout << "Would you like to add any alcohol?\n" <<
+      "Press (1) for 'yes' and (2) for 'no': " << std::endl;
+      int ans;
+      std::cin >> ans;
+      if(ans == 2) {
+        std::cout << "Thank you! Bye!\n" << std::endl;
       } else {
-        break;     
+      std::string alcoholName;
+      Alcohol::volume alcoholVol;
+      Alcohol::type alcoholType;
+      int tempVol, tempType;
+      uint32_t alcoholStock;
+      float alcoholPrice, alcoholSize;
+      while(std::cin >> ans) {  
+        if(ans == 1) {
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cout << "Alcohol\nName: " << std::endl;
+          std::getline(std::cin, alcoholName);
+          std::cout << "Volume (1) ml, (2) litre: " << std::endl;          
+          std::cin >> tempVol;
+          std::cout << "Type (1) spirit, (2) beer, (3) rtd, (4) r wine, (5) w wine, (6) other: " << std::endl;
+          std::cin >> tempType;
+          std::cout << "Stock: " << std::endl;
+          std::cin >> alcoholStock;
+          std::cout << "Price: " << std::endl;
+          std::cin >> alcoholPrice;
+          std::cout << "Size: " << std::endl;
+          std::cin >> alcoholSize;
+
+          alcoholVol = static_cast<Alcohol::volume>(tempVol);
+          alcoholType = static_cast<Alcohol::type>(tempType);
+
+          Alcohol alc(alcoholName, 
+                      alcoholStock,
+                      alcoholPrice,
+                      alcoholSize,
+                      alcoholVol,
+                      alcoholType);
+
+          alcohols.push_back(alc);
+
+          std::cout << "Would you like to add another?\n" <<
+            "Press (1) for 'yes' and (2) for 'no': ";
+          std::cin.clear();
+        } else {
+          break;     
+        }
       }
     }
-  }
     std::cout << "Thank you.\n\n" << 
       "Would you like to add any chips?\n" << 
       "Press (1) for 'yes' and (2) for 'no': " << std::endl;
@@ -112,6 +114,17 @@ int main(void) {
         }
       }
     }
+      break;
+    }
+    case 2: {
+      break;
+    }
+    case 3: {
+      break;
+    }
+  }
+
+
   
 if(alcohols.empty()) {
     std::cout << "Bye!" << std::endl;
@@ -145,3 +158,6 @@ if(chips.empty()) {
   }
 
 }
+
+
+
