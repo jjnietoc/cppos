@@ -14,6 +14,11 @@ New project to practice everything I've learned of C++ so far.
 This will also work as a pause from my NES project which I would love to eventually go back to.
 
 ### Log:
+#### 19 mar:
+SQLite create and insert work as intended for both objects. 
+Next step is to make the whole thing a switch case for different necessities.
+This will conclude the stock side of the software for now.
+
 #### 9 mar:
 SQLite is now working as intended. Just need to make it work with the previously created objects.
 
@@ -27,5 +32,5 @@ I will now proceed to link a database so the program can store memory after been
 - Create products and store them while the program is running
 
 ### Next:
-- Modify sqlite for product objects.
+- Create main software.
 
