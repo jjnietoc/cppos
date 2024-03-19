@@ -26,6 +26,7 @@ int SQL::openDB() {
   }
 }
 
+/*
 void SQL::createTable(std::string name) {
   upper(name);
   std::string fullcmd = "CREATE TABLE " + name + " (" \
@@ -45,7 +46,7 @@ void SQL::createTable(std::string name) {
   } else {
     std::cout << "Operation done successfully\n";
   }
-}
+} */
 
 void SQL::createTable(std::string tName, int type) {
   switch(type) {
@@ -103,7 +104,6 @@ const char* SQL::typeToSQL(std::type_index ti) {
   return it == myTypeMap.end() ? "Out of range" : it->second;
 } */
 
-// FIX MAKE INSERT METHOD LIKE CREATE TABLE
 void SQL::insertIntoTable(std::string tName,
                           std::string name, 
                           std::string type,
@@ -140,7 +140,7 @@ void SQL::insertIntoTable(std::string tName,
   
   upper(tName);
   std::string insertcmd = 
-    "INSERT INTO " + tName + " (NAME,TYPE,STOCK,PRICE,SIZE) " \
+    "INSERT INTO " + tName + " (NAME,STOCK,PRICE,SIZE) " \
     "VALUES (" 
     + "'" + name + "'" + ", " 
     + std::to_string(stock) + ", " 

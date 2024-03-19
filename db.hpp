@@ -18,7 +18,7 @@ class SQL
     SQL();
     ~SQL();
     int openDB();
-    void createTable(std::string tName);
+    // void createTable(std::string tName);
     void createTable(std::string tName, int type);
     void insertIntoTable(std::string tName,
                            std::string name, 
