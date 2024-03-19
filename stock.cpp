@@ -20,7 +20,7 @@ int main(void) {
 
   std::vector<Alcohol> alcohols;
   std::vector<Chips> chips;
-
+  
   std::cout << "\n\ncpPOS v.0.1\nSelect from following (press number):\n" <<
     "(1) ADD products.\n(2) MODIFY products\n(3) DELETE products" << std::endl;
   int response;
@@ -40,8 +40,7 @@ int main(void) {
       int tempVol, tempType;
       uint32_t alcoholStock;
       float alcoholPrice, alcoholSize;
-      while(std::cin >> ans) {  
-        if(ans == 1) {
+      while(ans != 2) {  
           std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           std::cout << "Alcohol\nName: " << std::endl;
           std::getline(std::cin, alcoholName);
@@ -71,9 +70,7 @@ int main(void) {
           std::cout << "Would you like to add another?\n" <<
             "Press (1) for 'yes' and (2) for 'no': ";
           std::cin.clear();
-        } else {
-          break;     
-        }
+          std::cin >> ans;
       }
     }
     std::cout << "Thank you.\n\n" << 
@@ -87,8 +84,7 @@ int main(void) {
       std::string chipsName;
       uint32_t chipsStock;
       float chipsPrice, chipsSize;
-      while(std::cin >> ans2) {
-        if(ans2 == 1) {
+      while(ans2 != 2) {
           std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           std::cout << "Chips\nName: " << std::endl;
           std::getline(std::cin, chipsName);
@@ -109,10 +105,38 @@ int main(void) {
           std::cout << "Would you like to add another one?\n" <<
             "Press (1) for 'yes' and (2) for 'no': " << std::endl;
           std::cin.clear();
-        } else {
-          break;
-        }
+          std::cin >> ans2;
       }
+    }
+    if(alcohols.empty()) {
+      std::cout << "Bye!" << std::endl;
+    } else {
+      std::cout << "Would you like to add the following products to the database?:\nAlcohols:\n";
+      std::cout << alcohols;
+    }
+    if(chips.empty()) {
+      std::cout << "Bye!" << std::endl;
+    } else {
+      std::cout << "Chips:\n";
+      std::cout << chips;
+    }
+
+    for(int i = 0; i < alcohols.size(); i++) {
+      database.insertIntoTable("Alcohols", 
+                               alcohols[i].getName(), 
+                               alcohols[i].typeToStr(alcohols[i].getType()), 
+                               alcohols[i].typeToStr(alcohols[i].getType()), 
+                               alcohols[i].getStock(), 
+                               alcohols[i].getPrice(), 
+                               alcohols[i].getSize());
+    }
+  
+    for(int i = 0; i < chips.size(); i++) {
+      database.insertIntoTable("Chips", 
+                             chips[i].getName(), 
+                             chips[i].getStock(), 
+                             chips[i].getPrice(), 
+                             chips[i].getSize());
     }
       break;
     }
@@ -126,36 +150,7 @@ int main(void) {
 
 
   
-if(alcohols.empty()) {
-    std::cout << "Bye!" << std::endl;
-  } else {
-    std::cout << "Would you like to add the following products to the database?:\nAlcohols:\n";
-    std::cout << alcohols;
-  }
-if(chips.empty()) {
-    std::cout << "Bye!" << std::endl;
-  } else {
-    std::cout << "Chips:\n";
-    std::cout << chips;
-  }
 
-  for(int i = 0; i < alcohols.size(); i++) {
-    database.insertIntoTable("Alcohols", 
-                               alcohols[i].getName(), 
-                               alcohols[i].typeToStr(alcohols[i].getType()), 
-                               alcohols[i].typeToStr(alcohols[i].getType()), 
-                               alcohols[i].getStock(), 
-                               alcohols[i].getPrice(), 
-                               alcohols[i].getSize());
-  }
-  
-  for(int i = 0; i < chips.size(); i++) {
-    database.insertIntoTable("Chips", 
-                             chips[i].getName(), 
-                             chips[i].getStock(), 
-                             chips[i].getPrice(), 
-                             chips[i].getSize());
-  }
 
 }
 
