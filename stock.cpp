@@ -6,11 +6,10 @@
 #include <vector>
 #include <cctype>
 
-void alcInput(Alcohol &alc);
 void addProduct(SQL &database, std::vector<Alcohol>alcohols, std::vector<Chips>chips);
-std::string modifyProduct();
-std::string deleteProducts();
-std::string checkProducts();
+void modifyProduct(SQL &database);
+void deleteProducts();
+void checkProducts();
 
 int main(void) {
   SQL database;
@@ -37,30 +36,8 @@ int main(void) {
     }
     // update
     case 2: { 
-      std::string tName, column, newval, name;
-      std::cout << "UPDATE products\nFill the following:\nTable Name: " << std::endl;
-      std::cin >> tName;
-      std::cout << "Column: " << std::endl;
-      std::cin >> column;
-      std::cout << "Name of product: " << std::endl;
-      std::cin >> name;
-      std::cout << "New value: " << std::endl; 
-      std::cin >> newval;
-      std::cout << "You would like to UPDATE:\n" << name << " in " <<
-        tName << " table, and column " << column << " with " << newval <<
-        "\nPlease confirm with '1'" << std::endl;
-      int ans;
-      std::cin >> ans;
-      if(ans == 1) { 
-        try {
-        database.updateTable(tName, column, newval, name);
-        } catch(const std::exception e) {
-          std::cout << "Error" << std::endl;
-        }
-      } else {
-        std::cout << "Bye!" << std::endl;
-      }
-      break;
+    modifyProduct(database);
+    break;
     }
     // delete
     case 3: {
@@ -187,4 +164,32 @@ std::cout << "Would you like to add any alcohol?\n" <<
                              chips[i].getSize());
     }
 
+}
+
+void modifyProduct(SQL &database) {
+std::string tName, column, newval, name;
+      std::cout << "UPDATE products\nFill the following:\nTable Name: " << std::endl;
+      std::cin.ignore();
+      std::getline(std::cin, tName);
+      std::cout << "Column: " << std::endl;
+      std::getline(std::cin, column);
+      std::cout << "Name of product: " << std::endl;
+      std::getline(std::cin, name);
+      std::cout << "New value: " << std::endl; 
+      std::getline(std::cin, newval);
+      std::cout << "You would like to UPDATE:\n" << name << " in " <<
+        tName << " table, and column " << column << " with " << newval <<
+        "\nPlease confirm with '1'" << std::endl;
+      int ans;
+      std::cin >> ans;
+      if(ans == 1) { 
+        try {
+        database.updateTable(tName, column, newval, name);
+        } catch(int error) {
+          std::cin.clear();
+          modifyProduct(database);
+        }
+      } else {
+        std::cout << "Bye!" << std::endl;
+      }
 }
