@@ -173,6 +173,7 @@ void SQL::updateTable(std::string tName,
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
   if(!sqlite3_changes(db)) {
     std::cout << "Record not found. Please try again." << std::endl;
+    throw 000;
   } else {
     std::cout << "Update done successfully\n";
   }
