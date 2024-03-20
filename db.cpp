@@ -167,7 +167,7 @@ void SQL::updateTable(std::string tName,
     + tName + " set " 
     + column + " = " 
     + "'" + newval + "'" 
-    + "where NAME=" + "'" + name +  + "; "; \
+    + "where NAME=" + "'" + name +  + "'; "; \
   sql = updatecmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
   if(rc != SQLITE_OK) {
