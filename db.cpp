@@ -93,6 +93,7 @@ void SQL::createTable(std::string tName, int type) {
   }
 }
 
+
 /* Don't think this is still useful
 const char* SQL::typeToSQL(std::type_index ti) {
   const std::map<std::type_index, const char*> myTypeMap {
@@ -170,9 +171,8 @@ void SQL::updateTable(std::string tName,
     + "where NAME=" + "'" + name +  + "'; "; \
   sql = updatecmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
-  if(rc != SQLITE_OK) {
-    std::cout << "SQL error:\n" << errMsg;
-    sqlite3_free(errMsg);
+  if(!sqlite3_changes(db)) {
+    std::cout << "Record not found. Please try again." << std::endl;
   } else {
     std::cout << "Update done successfully\n";
   }
