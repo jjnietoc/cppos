@@ -4,8 +4,13 @@
 #include "db.hpp"
 
 #include <vector>
+#include <cctype>
 
 void alcInput(Alcohol &alc);
+void addProduct(SQL &database, std::vector<Alcohol>alcohols, std::vector<Chips>chips);
+std::string modifyProduct();
+std::string deleteProducts();
+std::string checkProducts();
 
 int main(void) {
   SQL database;
@@ -27,7 +32,49 @@ int main(void) {
   std::cin >> response;
   switch(response) {
     case 1: {
-      std::cout << "Would you like to add any alcohol?\n" <<
+    addProduct(database, alcohols, chips);
+    break; 
+    }
+    // update
+    case 2: { 
+      std::string tName, column, newval, name;
+      std::cout << "UPDATE products\nFill the following:\nTable Name: " << std::endl;
+      std::cin >> tName;
+      std::cout << "Column: " << std::endl;
+      std::cin >> column;
+      std::cout << "Name of product: " << std::endl;
+      std::cin >> name;
+      std::cout << "New value: " << std::endl; 
+      std::cin >> newval;
+      std::cout << "You would like to UPDATE:\n" << name << " in " <<
+        tName << " table, and column " << column << " with " << newval <<
+        "\nPlease confirm with '1'" << std::endl;
+      int ans;
+      std::cin >> ans;
+      if(ans == 1) { 
+        try {
+        database.updateTable(tName, column, newval, name);
+        } catch(const std::exception e) {
+          std::cout << "Error" << std::endl;
+        }
+      } else {
+        std::cout << "Bye!" << std::endl;
+      }
+      break;
+    }
+    // delete
+    case 3: {
+      break;
+    }
+    // check
+    case 4: {
+      break;
+    }
+  }
+}
+
+void addProduct(SQL &database, std::vector<Alcohol>alcohols, std::vector<Chips>chips) {
+std::cout << "Would you like to add any alcohol?\n" <<
       "Press (1) for 'yes' and (2) for 'no': " << std::endl;
       int ans;
       std::cin >> ans;
@@ -40,7 +87,7 @@ int main(void) {
       int tempVol, tempType;
       uint32_t alcoholStock;
       float alcoholPrice, alcoholSize;
-      while(ans != 2) {  
+      while(ans != 2 && !std::isalpha(ans)) {  
           std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           std::cout << "Alcohol\nName: " << std::endl;
           std::getline(std::cin, alcoholName);
@@ -70,6 +117,7 @@ int main(void) {
           std::cout << "Would you like to add another?\n" <<
             "Press (1) for 'yes' and (2) for 'no': ";
           std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           std::cin >> ans;
       }
     }
@@ -84,7 +132,7 @@ int main(void) {
       std::string chipsName;
       uint32_t chipsStock;
       float chipsPrice, chipsSize;
-      while(ans2 != 2) {
+      while(ans2 != 2  && !std::isalpha(ans2)) {
           std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           std::cout << "Chips\nName: " << std::endl;
           std::getline(std::cin, chipsName);
@@ -138,39 +186,5 @@ int main(void) {
                              chips[i].getPrice(), 
                              chips[i].getSize());
     }
-      break;
-    }
-    // update
-    case 2: { 
-      std::string tName, column, newval, name;
-      std::cout << "UPDATE products\nFill the following:\nTable Name: " << std::endl;
-      std::cin >> tName;
-      std::cout << "Column: " << std::endl;
-      std::cin >> column;
-      std::cout << "Name of product: " << std::endl;
-      std::cin >> name;
-      std::cout << "New value: " << std::endl; 
-      std::cin >> newval;
-      std::cout << "You would like to UPDATE:\n" << name << " in " <<
-        tName << " table, and column " << column << " with " << newval <<
-        "\nPlease confirm with '1'" << std::endl;
-      int ans;
-      std::cin >> ans;
-      if(ans == 1) {
-        database.updateTable(tName, column, newval, name);
-      } else {
-        std::cout << "Bye!" << std::endl;
-      }
-      break;
-    }
-    // delete
-    case 3: {
-      break;
-    }
-    // check
-    case 4: {
-      break;
-    }
-  }
 
 }
