@@ -22,7 +22,7 @@ int main(void) {
   std::vector<Chips> chips;
   
   std::cout << "\n\ncpPOS v.0.1\nSelect from following (press number):\n" <<
-    "(1) ADD products.\n(2) MODIFY products\n(3) DELETE products" << std::endl;
+    "(1) ADD products.\n(2) MODIFY products\n(3) DELETE products\n(4) CHECK products\n" << std::endl;
   int response;
   std::cin >> response;
   switch(response) {
@@ -140,19 +140,37 @@ int main(void) {
     }
       break;
     }
-    case 2: {
+    // update
+    case 2: { 
+      std::string tName, column, newval, name;
+      std::cout << "UPDATE products\nFill the following:\nTable Name: " << std::endl;
+      std::cin >> tName;
+      std::cout << "Column: " << std::endl;
+      std::cin >> column;
+      std::cout << "Name of product: " << std::endl;
+      std::cin >> name;
+      std::cout << "New value: " << std::endl; 
+      std::cin >> newval;
+      std::cout << "You would like to UPDATE:\n" << name << " in " <<
+        tName << " table, and column " << column << " with " << newval <<
+        "\nPlease confirm with '1'" << std::endl;
+      int ans;
+      std::cin >> ans;
+      if(ans == 1) {
+        database.updateTable(tName, column, newval, name);
+      } else {
+        std::cout << "Bye!" << std::endl;
+      }
       break;
     }
+    // delete
     case 3: {
+      break;
+    }
+    // check
+    case 4: {
       break;
     }
   }
 
-
-  
-
-
 }
-
-
-
