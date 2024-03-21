@@ -8,8 +8,8 @@
 
 void addProduct(SQL &database, std::vector<Alcohol>alcohols, std::vector<Chips>chips);
 void modifyProduct(SQL &database);
-void deleteProducts(SQL &database);
-void checkProducts();
+void deleteProduct(SQL &database);
+void checkProduct(SQL &database);
 
 int main(void) {
   SQL database;
@@ -31,21 +31,22 @@ int main(void) {
   std::cin >> response;
   switch(response) {
     case 1: {
-    addProduct(database, alcohols, chips);
+      addProduct(database, alcohols, chips);
     break; 
     }
     // update
     case 2: { 
-    modifyProduct(database);
+      modifyProduct(database);
     break;
     }
     // delete
     case 3: {
-      break;
+      deleteProduct(database);
+    break;
     }
     // check
     case 4: {
-      break;
+    break;
     }
   }
 }
@@ -193,6 +194,26 @@ void modifyProduct(SQL &database) {
     }
 }
 
-void deleteProducts(SQL &database) {
+void deleteProduct(SQL &database) {
+  std::string tName, name;
+  std::cout << "DELETE product\nFill the following:\nTable Name: " << std::endl;
+  std::cin.ignore();
+  std::getline(std::cin, tName);
+  std::cout << "Name of product to be deleted: " << std::endl;
+  std::getline(std::cin, name);
 
+  std::cout << "You would like to DELETE:\n" << name << " in table: " << tName <<
+    "\nConfirm with '1'" << std::endl;
+  int ans;
+  std::cin >> ans;
+  if(ans == 1) {
+    try {
+      database.deleteFromTable(tName, name);
+    } catch(int error) {
+      std::cin.clear();
+      deleteProduct(database);
+    }
+  } else {
+    std::cout << "Bye!" << std::endl;
+  }
 }

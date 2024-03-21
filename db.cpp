@@ -182,12 +182,13 @@ void SQL::updateTable(std::string tName,
 void SQL::deleteFromTable(std::string tName, std::string name) {
   upper(tName);
   std::string deletecmd = 
-    "DELETE FROM " + tName + " WHERE NAME=" + name + ";"; \
+    "DELETE FROM " + tName + " WHERE NAME = '" + name + "';"; \
   sql = deletecmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
   if(rc != SQLITE_OK) {
     std::cout << "SQL error:\n" << errMsg;
     sqlite3_free(errMsg);
+    throw 001;
   } else {
     std::cout << "Operation done successfully\n";
   }
