@@ -194,6 +194,19 @@ void SQL::deleteFromTable(std::string tName, std::string name) {
   }
 }
 
+void SQL::checkTable(std::string tName) {
+  upper(tName);
+  std::string query = "SELECT * FROM " + tName;
+  rc = sqlite3_exec(db, query.c_str(), callback, NULL, NULL);
+  if(rc != SQLITE_OK) {
+    std::cout << "SQL error:\n" << errMsg;
+    sqlite3_free(errMsg);
+    throw 002;
+  } else {
+    std::cout << "Operation done successfully\n";
+  }
+}
+
 void SQL::closeDataBase() {
   sqlite3_close(db);
 }

@@ -46,6 +46,7 @@ int main(void) {
     }
     // check
     case 4: {
+      checkProduct(database);
     break;
     }
   }
@@ -212,6 +213,28 @@ void deleteProduct(SQL &database) {
     } catch(int error) {
       std::cin.clear();
       deleteProduct(database);
+    }
+  } else {
+    std::cout << "Bye!" << std::endl;
+  }
+}
+
+void checkProduct(SQL &database) {
+  std::string tName;
+  std::cout << "CHECK products\nFill in the following:\nTable Name: " << std::endl;
+  std::cin.ignore();
+  std::getline(std::cin, tName);
+  
+  std::cout << "You would like to check the products in table " + tName <<
+    "\nConfirm with '1'" << std::endl;
+  int ans;
+  std::cin >> ans;
+  if(ans == 1) {
+    try {
+      database.checkTable(tName);
+    } catch(int error) {
+      std::cin.clear();
+      checkProduct(database);
     }
   } else {
     std::cout << "Bye!" << std::endl;
