@@ -18,7 +18,6 @@ class SQL
     SQL();
     ~SQL();
     int openDB();
-    // void createTable(std::string tName);
     void createTable(std::string tName, int type);
     void insertIntoTable(std::string tName,
                            std::string name, 
@@ -37,6 +36,7 @@ class SQL
                      std::string newval,
                      std::string name);
     void deleteFromTable(std::string tName, std::string name);
+    void checkTable(std::string tName);
     void closeDataBase();
 
     std::string upper(std::string name);    // for easier name transformations
