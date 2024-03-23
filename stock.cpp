@@ -1,17 +1,11 @@
 // main app for stock intake and modification
-#include "alcohol.hpp"
-#include "chips.hpp"
-#include "db.hpp"
+#include "stock.hpp"
 
 #include <vector>
 #include <cctype>
 
-void addProduct(SQL &database, std::vector<Alcohol>alcohols, std::vector<Chips>chips);
-void modifyProduct(SQL &database);
-void deleteProduct(SQL &database);
-void checkProduct(SQL &database);
 
-int main(void) {
+void stockLoop() { 
   SQL database;
 
   database.openDB();
