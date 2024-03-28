@@ -9,8 +9,6 @@
 #ifndef CORP_HPP
 #define CORP_HPP
 
-// NOTE
-
 class User 
 {
   private: 
