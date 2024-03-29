@@ -12,7 +12,7 @@
 class User 
 {
   private: 
-    std::string ID;
+    std::string pass;
     std::string username;
     bool isAdmin;
 
@@ -22,11 +22,11 @@ class User
          bool ad = false);
     ~User();
     
-    void setID();
+    void setPass();
     void setName(const std::string & un);
     void setAdmin(bool ad);
 
-    const std::string & getID() const { return ID; };
+    const std::string & getPass() const { return pass; };
     const std::string & getName() const { return username; };
     const bool & getAdmin() const { return isAdmin; };
     
