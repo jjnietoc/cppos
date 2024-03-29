@@ -5,16 +5,16 @@
 
 User::User(const std::string & un, 
            bool ad) {
-  setID();
+  setPass();
   setName(un);
   setAdmin(ad);
 }
 
 User::~User() {}
 
-void User::setID() {
+void User::setPass() {
   int temp = rand() % 9000 + 1000;
-  ID = std::to_string(temp);
+  pass = std::to_string(temp);
   }
 
 void User::setName(const std::string &un) {
@@ -36,7 +36,7 @@ std::ostream& operator<<(std::ostream& out, const std::vector<User>& v) {
     size_t last = v.size() - 1;
     for(size_t i = 0; i < v.size(); ++i) {
         out << i + 1 << ") " << v[i].getName() << ". ID: "
-    << v[i].getID() << ".";
+    << v[i].getPass() << ".";
         if(i != last)
           out << "\n"; 
         }
@@ -51,7 +51,7 @@ void userLoop() {
 
   std::string userTableName = "Users";
 
-  database.createTable(userTableName, 3); // NOTE fix this
+  database.createTable(userTableName, 3); 
 
   std::vector<User> users;
   
