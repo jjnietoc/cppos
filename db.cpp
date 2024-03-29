@@ -26,28 +26,6 @@ int SQL::openDB() {
   }
 }
 
-/*
-void SQL::createTable(std::string name) {
-  upper(name);
-  std::string fullcmd = "CREATE TABLE " + name + " (" \
-  "ID INTEGER     PRIMARY KEY," \
-  "NAME           TEXT  NOT NULL," \
-  "TYPE           TEXT  NOT NULL," \
-  "VOLUME         TEXT  NOT NULL," \
-  "PRICE          INT   NOT NULL," \
-  "STOCK          INT   NOT NULL," \
-  "SIZE           REAL  NOT NULL);";
-  
-  sql = fullcmd;
-  rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
-  if(rc != SQLITE_OK) {
-    std::cout << "SQL error:\n" << errMsg << "\n";
-    sqlite3_free(errMsg);
-  } else {
-    std::cout << "Operation done successfully\n";
-  }
-} */
-
 void SQL::createTable(std::string tName, int type) {
   switch(type) {
     case 1: {
@@ -90,20 +68,26 @@ void SQL::createTable(std::string tName, int type) {
       }
       break;
     }
+    case 3: {
+      upper(tName);
+      std::string fullcmd3 = "CREATE TABLE " + tName + " (" \
+      "ID INTEGER     PRIMARY KEY," \
+      "NAME           TEXT  NOT NULL," \
+      "PASS           TEXT  NOT NULL," \
+      "ADMIN          INT   NOT NULL);";
+  
+      sql = fullcmd3;
+      rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+      if(rc != SQLITE_OK) {
+       std::cout << "SQL error:\n" << errMsg << "\n";
+        sqlite3_free(errMsg);
+      } else {
+        std::cout << "Operation done successfully\n";
+      }
+      break;
+    }
   }
 }
-
-
-/* Don't think this is still useful
-const char* SQL::typeToSQL(std::type_index ti) {
-  const std::map<std::type_index, const char*> myTypeMap {
-    { std::type_index(typeid(std::string)), "TEXT" },
-    { std::type_index(typeid(int)), "INT" },
-    { std::type_index(typeid(float)), "REAL" }
-  };
-  auto it = myTypeMap.find(ti);
-  return it == myTypeMap.end() ? "Out of range" : it->second;
-} */
 
 void SQL::insertIntoTable(std::string tName,
                           std::string name, 
