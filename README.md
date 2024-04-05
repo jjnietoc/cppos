@@ -44,5 +44,5 @@ I will now proceed to link a database so the program can store memory after been
 - Create products and store them while the program is running
 
 ### Next:
-- Create main software.
+- Create retail software.
 
