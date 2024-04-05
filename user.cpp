@@ -19,6 +19,7 @@ void userLoop() {
   std::cin >> response;
   switch(response) {
     case 1: {
+      createUser(database, users);
       break;
     }
     case 2: {
@@ -31,4 +32,61 @@ void userLoop() {
     break;
     }
   }
+}
+
+void createUser(SQL &database, std::vector<User> users) {
+  std::cout << "Add new user?\n" <<
+    "Press (1) for 'yes' and (2) for 'no': " << std::endl;
+  int ans;
+  std::cin >> ans;
+  if(ans == 2) {
+    std::cout << "Thank you! Bye!\n" << std::endl;
+  } else {
+    std::string userName;
+    int admin;
+    while(ans != 2 && !std::isalpha(ans)) {
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      std::cout << "User name: " << std::endl;
+      std::getline(std::cin, userName);
+      std::cout << "Is this user an admin?\nPress (1) for 'yes' and (2) for 'no'" << std::endl;
+      std::cin >> admin;
+
+      User user(userName, admin);
+
+      users.push_back(user);
+
+      std::cout << "User created.\nUser's code is: " << user.getPass() << std::endl;
+
+      std::cout << "Would you like to add another user?\n" <<
+        "Press (1) for 'yes' and (2) for 'no'" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      std::cin >> ans;
+    }
+  }
+  if(users.empty()) {
+    std::cout << "Bye!" << std::endl;
+  } else {
+    std::cout << "Would you like to add the following users to the database?:\n";
+    std::cout << users;
+  }
+
+  for(int i = 0; i < users.size(); i++) {
+    database.insertIntoTable("Users",
+                             users[i].getName(),
+                             users[i].getPass(),
+                             users[i].getAdmin());
+  }
+}
+
+void modifyUser(SQL &database) {
+
+}
+
+void deleteUser(SQL &database) {
+
+}
+
+void checkUser(SQL &database) {
+
 }
