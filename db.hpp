@@ -31,6 +31,10 @@ class SQL
                          int stock,
                          float price,
                          float size);
+    void insertIntoTable(std::string tName,
+                         std::string uName, 
+                         std::string pass,
+                         int admin);
     void updateTable(std::string tName,
                      std::string column, 
                      std::string newval,

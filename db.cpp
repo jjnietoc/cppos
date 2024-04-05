@@ -89,6 +89,7 @@ void SQL::createTable(std::string tName, int type) {
   }
 }
 
+// alcohol
 void SQL::insertIntoTable(std::string tName,
                           std::string name, 
                           std::string type,
@@ -117,6 +118,7 @@ void SQL::insertIntoTable(std::string tName,
   }
 }
 
+// chips
 void SQL::insertIntoTable(std::string tName,
                           std::string name, 
                           int stock,
@@ -141,6 +143,27 @@ void SQL::insertIntoTable(std::string tName,
   }
 }
 
+// user
+void SQL::insertIntoTable(std::string tName, 
+                          std::string uName, 
+                          std::string pass,
+                          int admin) {
+  upper(tName);
+   std::string insertcmd = 
+    "INSERT INTO " + tName + " (NAME,STOCK,PRICE,SIZE) " \
+    "VALUES (" 
+    + "'" + uName + "'" + ", " 
+    + "'" + pass + "'" + ", " 
+    + std::to_string(admin) + ");"; \
+  sql = insertcmd;
+  rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
+  if(rc != SQLITE_OK) {
+    std::cout << "SQL error:\n" << errMsg << "\n";
+    sqlite3_free(errMsg);
+  } else {
+    std::cout << "Insert into chips done successfully\n";
+  }
+}
 
 void SQL::updateTable(std::string tName, 
                       std::string column, 
