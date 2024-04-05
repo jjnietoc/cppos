@@ -1,3 +1,6 @@
+#ifndef DB_HPP
+#define DB_HPP
+
 #include <sqlite3.h>
 #include <stdlib.h>
 #include <string>
@@ -54,4 +57,6 @@ class SQL
       std::cout << "\n";
       return 0;
     };
-  };
+  };  
+
+#endif
