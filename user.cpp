@@ -28,10 +28,11 @@ void userLoop() {
     }
     case 3: {
       deleteUser(database);
-    break;
+      break;
     }
     case 4: {
-    break;
+      checkUser(database);
+      break;
     }
   }
 }
