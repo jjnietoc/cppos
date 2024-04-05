@@ -8,12 +8,19 @@ New project to practice everything I've learned of C++ so far.
 - [x] Add sqlite
 - [x] Add sqlite for products
 - [x] Create stock software
+- [x] Create user software
 - [ ] Create retail software
 - [ ] Create GUI
 
 This will also work as a pause from my NES project which I would love to eventually go back to.
 
 ### Log:
+#### 5 apr:
+User software finished.
+With both of these parts complete, I should be able to create a main loop.
+This will use case switch to move between creating users and products.
+Next step is to create the retail side: selling, buying, etc.
+
 #### 22 mar:
 Stock software finished! (for the moment). 
 I will now start developing for using the user side of the whole program,
