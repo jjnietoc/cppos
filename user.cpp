@@ -23,6 +23,7 @@ void userLoop() {
       break;
     }
     case 2: {
+      modifyUser(database);
       break;
     }
     case 3: {
@@ -80,7 +81,28 @@ void createUser(SQL &database, std::vector<User> users) {
 }
 
 void modifyUser(SQL &database) {
-
+  std::string column, newval, name;
+  std::cout << "UPDATE users\nFill in the following:\nColumn: " std::endl;
+  std::cin.ignore();
+  std::getline(std::cin, column);
+  std::cout << "Name of product: " << std::endl;
+  std::getline(std::cin, name);
+  std::cout << "New value: " << std::endl;
+  std::getline(std::cin, newval);
+  std::cout << "You would like to update:\n" << name << ", in colum " <<
+    column << " with " << newval << "\nPlease confirm with '1'" << std::endl;
+  int ans;
+  std::cin >> ans;
+  if(ans == 1) {
+    try {
+      database.updateTable("USERS", column, newval, name);
+    } catch(int error) {
+      std::cin.clear();
+      modifyUser(database);
+    }
+  } else {
+    std::cout << "Bye!" << std::endl;
+  }
 }
 
 void deleteUser(SQL &database) {
