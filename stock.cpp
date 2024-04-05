@@ -22,7 +22,7 @@ void stockLoop() {
   std::cout << "\n\ncpPOS v.0.1\nSelect from following (press number):\n" <<
     "(1) ADD products.\n(2) MODIFY products\n(3) DELETE products\n(4) CHECK products\n" << std::endl;
   int response;
-  std::cin >> response;
+  std::cin >> response; 
   switch(response) {
     case 1: {
       addProduct(database, alcohols, chips);
