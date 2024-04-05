@@ -27,6 +27,7 @@ void userLoop() {
       break;
     }
     case 3: {
+      deleteUser(database);
     break;
     }
     case 4: {
@@ -82,7 +83,7 @@ void createUser(SQL &database, std::vector<User> users) {
 
 void modifyUser(SQL &database) {
   std::string column, newval, name;
-  std::cout << "UPDATE users\nFill in the following:\nColumn: " std::endl;
+  std::cout << "UPDATE users\nFill in the following:\nColumn: " << std::endl;
   std::cin.ignore();
   std::getline(std::cin, column);
   std::cout << "Name of product: " << std::endl;
@@ -106,9 +107,39 @@ void modifyUser(SQL &database) {
 }
 
 void deleteUser(SQL &database) {
+  std::string name;
+  std::cout << "DELETE user\nFill the following:\nName of user to be deleted:" << std::endl;
+  std::cin.ignore();
+  std::getline(std::cin, name);
 
+  std::cout << "Would you like to delete:\n" << name << "\nConfirm with '1'" << std::endl;
+  int ans;
+  std::cin >> ans;
+  if(ans == 1) {
+    try {
+      database.deleteFromTable("USERS", name);
+    } catch(int error) {
+      std::cin.clear();
+      deleteUser(database);
+    }
+  } else {
+    std::cout << "Bye!" << std::endl;
+  }
 }
 
 void checkUser(SQL &database) {
-
+  std::cout << "CHECK users\nWould you like to check all the users?" <<
+    "\nConfirm with '1'" << std::endl;
+  int ans;
+  std::cin >> ans;
+  if(ans == 1) {
+    try {
+      database.checkTable("USERS");
+    } catch(int error) {
+      std::cin.clear();
+      checkUser(database);
+    }
+  } else {
+    std::cout << "Bye!" << std::endl;
+  }
 }
