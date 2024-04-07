@@ -19,7 +19,8 @@ void stockLoop() {
   std::vector<Alcohol> alcohols;
   std::vector<Chips> chips;
   
-  std::cout << "\n\ncpPOS v.0.1\nSelect from following (press number):\n" <<
+  std::cout << "\n\ncpPOS v.0.1\n-------------\nProduct interface\n" <<
+    "-------------\nSelect from following (press number):\n" <<
     "(1) ADD products.\n(2) MODIFY products\n(3) DELETE products\n(4) CHECK products\n" << std::endl;
   int response;
   std::cin >> response; 
