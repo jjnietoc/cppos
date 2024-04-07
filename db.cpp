@@ -150,7 +150,7 @@ void SQL::insertIntoTable(std::string tName,
                           int admin) {
   upper(tName);
    std::string insertcmd = 
-    "INSERT INTO " + tName + " (NAME,STOCK,PRICE,SIZE) " \
+    "INSERT INTO " + tName + " (NAME,PASS,ADMIN) " \
     "VALUES (" 
     + "'" + uName + "'" + ", " 
     + "'" + pass + "'" + ", " 
@@ -161,7 +161,7 @@ void SQL::insertIntoTable(std::string tName,
     std::cout << "SQL error:\n" << errMsg << "\n";
     sqlite3_free(errMsg);
   } else {
-    std::cout << "Insert into chips done successfully\n";
+    std::cout << "Insert into users done successfully\n";
   }
 }
 
