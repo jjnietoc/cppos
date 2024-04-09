@@ -1,13 +1,13 @@
 // corp.hpp -- manage organzation, users, passwords, privileges, etc.
 
+#ifndef CORP_HPP
+#define CORP_HPP
+
 #include <cstdint>
 #include <string>
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-
-#ifndef CORP_HPP
-#define CORP_HPP
 
 class User 
 {

@@ -1,6 +1,6 @@
 // header file for stock 
-#ifndef STOCK_HPP_
-#define STOCK_HPP_
+#ifndef STOCK_HPP
+#define STOCK_HPP
 
 #include "alcohol.hpp"
 #include "chips.hpp"

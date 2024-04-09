@@ -1,6 +1,6 @@
 // header file for user creation
-#ifndef USER_HPP_
-#define USER_HPP_
+#ifndef USER_HPP
+#define USER_HPP
 
 #include "corp.hpp"
 #include "db.hpp"
