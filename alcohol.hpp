@@ -8,8 +8,7 @@
 class Alcohol : public Product 
 {
   public:
-    enum class volume {    // this or just input in ml and create
-      // function to convert
+    enum class volume {    
       ml = 1,
       l = 2
     };
@@ -29,6 +28,9 @@ class Alcohol : public Product
             float s = 0.0,
             volume v = volume::ml,
             type t = type::other);
+    Alcohol(std::string name,
+            int price,
+            int stock);   // for sqlite
   
     ~Alcohol();
 

@@ -18,6 +18,10 @@ Alcohol::Alcohol(const std::string & pn,
   setType(t);
 }
 
+Alcohol::Alcohol(std::string name,
+                 int price,
+                 int stock) : Product(std::string(name), stock, price) { }
+
 Alcohol::~Alcohol() {}
 
 void Alcohol::setProductCode() {
@@ -74,3 +78,5 @@ const char* Alcohol::typeToStr(Alcohol::type t) {
   auto it = myEnumStrings.find(t);
   return it == myEnumStrings.end() ? "Out of range" : it->second;
 }
+
+
