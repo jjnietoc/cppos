@@ -218,9 +218,8 @@ void SQL::closeDataBase() {
   sqlite3_close(db);
 }
 
-std::vector<Alcohol> SQL::populateAlcVector() {
+void SQL::populateAlcVector(std::vector<Alcohol> &results) {
   sqlite3_stmt *stmt;
-  std::vector<Alcohol>res;
   rc = sqlite3_prepare_v2(db, "SELECT name, price, stock FROM alcohols",
                           -1, &stmt, NULL);
   if (rc != SQLITE_OK) {
@@ -231,9 +230,8 @@ std::vector<Alcohol> SQL::populateAlcVector() {
     const char* name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
     int price = sqlite3_column_int(stmt, 1);
     int stock = sqlite3_column_int(stmt, 2);
-    res.push_back(Alcohol(name, price, stock));
+    results.push_back(Alcohol(name, price, stock));
   }
-  return res;
   if (rc != SQLITE_DONE) {
     std::cout << "SELECT failed: " << sqlite3_errmsg(db) << std::endl;
     throw 000;

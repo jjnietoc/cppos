@@ -50,7 +50,7 @@ class SQL
     std::string upper(std::string name);    // for easier name transformations
     const char* typeToSQL(std::type_index ti);
 
-    std::vector<Alcohol> populateAlcVector();
+    void populateAlcVector(std::vector<Alcohol> &results);
 
     static int callback(void *data, int argc, char **argv, char **azColName) {
       int i;
