@@ -18,6 +18,8 @@ void stockLoop() {
 
   std::vector<Alcohol> alcohols;
   std::vector<Chips> chips;
+
+  std::vector<Alcohol> results;
   
   std::cout << "\n\ncpPOS v.0.1\n-------------\nProduct interface\n" <<
     "-------------\nSelect from following (press number):\n" <<
@@ -28,7 +30,7 @@ void stockLoop() {
     case 1: {
       addProduct(database, alcohols, chips);
     break; 
-    }
+    } 
     // update
     case 2: { 
       modifyProduct(database);
@@ -43,6 +45,10 @@ void stockLoop() {
     case 4: {
       checkProduct(database);
     break;
+    }
+    case 5: {
+      test(database, results);
+      break;
     }
   }
 }
@@ -234,4 +240,8 @@ void checkProduct(SQL &database) {
   } else {
     std::cout << "Bye!" << std::endl;
   }
+}
+
+void test(SQL &database, std::vector<Alcohol> res) {
+  database.populateAlcVector(res);
 }

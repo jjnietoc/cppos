@@ -12,5 +12,7 @@ void addProduct(SQL &database, std::vector<Alcohol>alcohols, std::vector<Chips>c
 void modifyProduct(SQL &database);
 void deleteProduct(SQL &database);
 void checkProduct(SQL &database);
+void populateProductVector(SQL &database);
+void test(SQL &database, std::vector<Alcohol> res);
 
 #endif
