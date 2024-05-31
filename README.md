@@ -12,8 +12,6 @@ New project to practice everything I've learned of C++ so far.
 - [ ] Create retail software
 - [ ] Create GUI
 
-This will also work as a pause from my NES project which I would love to eventually go back to.
-
 ### Log:
 #### 5 apr:
 User software finished.
