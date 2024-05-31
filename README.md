@@ -10,7 +10,6 @@ New project to practice everything I've learned of C++ so far.
 - [x] Create stock software
 - [x] Create user software
 - [ ] Create retail software
-- [ ] Create GUI
 
 ### Log:
 #### 5 apr:
