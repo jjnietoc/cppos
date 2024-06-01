@@ -175,7 +175,7 @@ void SQL::updateTable(std::string tName,
     + tName + " set " 
     + column + " = " 
     + "'" + newval + "'" 
-    + "where NAME=" + "'" + name +  + "'; "; \
+    + "where NAME=" + "'" + name + "'; "; \
   sql = updatecmd;
   rc = sqlite3_exec(db, sql.c_str(), callback, (void*)data, &errMsg);
   if(!sqlite3_changes(db)) {
@@ -235,5 +235,20 @@ void SQL::populateAlcVector(std::vector<Alcohol> &results) {
   if (rc != SQLITE_DONE) {
     std::cout << "SELECT failed: " << sqlite3_errmsg(db) << std::endl;
     throw 000;
+  }
+}
+
+void SQL::findEntryInTable(std::string tName, std::string eName) {
+  upper(tName);
+  std::string query = "SELECT * FROM " + tName 
+    + "WHERE NAME = " + eName + "'; "; \
+  sql = query;
+  rc = sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
+   if(rc != SQLITE_OK) {
+    std::cout << "SQL error:\n" << errMsg;
+    sqlite3_free(errMsg);
+    throw 002;
+  } else {
+    std::cout << "Operation done successfully\n";
   }
 }
