@@ -240,15 +240,33 @@ void SQL::populateAlcVector(std::vector<Alcohol> &results) {
 
 void SQL::findEntryInTable(std::string tName, std::string eName) {
   upper(tName);
-  std::string query = "SELECT * FROM " + tName 
-    + "WHERE NAME = " + eName + "'; "; \
-  sql = query;
-  rc = sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
-   if(rc != SQLITE_OK) {
-    std::cout << "SQL error:\n" << errMsg;
-    sqlite3_free(errMsg);
-    throw 002;
-  } else {
-    std::cout << "Operation done successfully\n";
+  try {
+    std::string query = "SELECT * FROM ALCOHOLS WHERE NAME = " 
+      + eName + "'; "; \
+    sql = query;
+    rc = sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
+    if(rc != SQLITE_OK) {
+      throw 002;
+    } else {
+      std::cout << "Operation done successfully\n";
+    }
+  }
+  catch(int error) {
+    std::cout << "Couldn't find product in 'Alcohols'" << std::endl;
+  }
+
+ try {
+    std::string query = "SELECT * FROM CHIPS WHERE NAME = " 
+      + eName + "'; "; \
+    sql = query;
+    rc = sqlite3_exec(db, sql.c_str(), callback, NULL, NULL);
+    if(rc != SQLITE_OK) {
+      throw 002;
+    } else {
+      std::cout << "Operation done successfully\n";
+    }
+  }
+  catch(int error) {
+    std::cout << "Couldn't find product in 'Chips'" << std::endl;
   }
 }
