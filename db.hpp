@@ -47,7 +47,7 @@ class SQL
     void checkTable(std::string tName);
     void closeDataBase();
 
-    void findEntryInTable(std::string tName, std::string eName);
+    void findEntryInTable(std::string eName);
 
     std::string upper(std::string name);    // for easier name transformations
     const char* typeToSQL(std::type_index ti);
