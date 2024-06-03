@@ -13,6 +13,7 @@ void selectItem() {
 
 }
 
+// NOTE this should be a search function that looks into all tables, without the need to give it one
 void searchItem(SQL &database) {
   std::string tn, en;
   std::cout << "Product table: " << std::endl;
